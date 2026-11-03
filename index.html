@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文化体验 · 蜀韵成都</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", sans-serif; background: #fdf8f3; color: #333; }
+        a { text-decoration: none; color: inherit; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(139, 0, 0, 0.95);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 60px; height: 64px;
+        }
+        nav .logo { color: #ffd700; font-size: 22px; font-weight: bold; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 36px; }
+        nav ul li a { color: #fff; font-size: 15px; transition: color .3s; }
+        nav ul li a:hover, nav ul li a.active { color: #ffd700; }
+
+        /* ===== 轮播图容器 ===== */
+        .slideshow { position: relative; width: 100%; height: 500px; margin-top: 64px; overflow: hidden; }
+        .slide {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; text-align: center;
+            opacity: 0; transition: opacity 1s ease-in-out;
+            background: #1a0f0a;               /* 深棕底色，填充留白区域 */
+        }
+        /* 轮播图片：完整显示、不变形 */
+        .slide img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: contain;              /* 完整显示，保持比例，不裁切 */
+            object-position: center;
+            z-index: 0;
+        }
+        .slide::before {
+            content: ''; position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.35));
+        }
+        .slide.active { opacity: 1; z-index: 1; }
+        .slide .caption { position: relative; z-index: 2; }
+        .slide h1 { font-size: 48px; letter-spacing: 8px; margin-bottom: 12px; }
+        .slide p { font-size: 16px; opacity: .9; letter-spacing: 2px; }
+        /* 左右箭头 */
+        .arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,255,255,.25); backdrop-filter: blur(4px);
+            color: #fff; font-size: 22px; cursor: pointer;
+            border: none; z-index: 10; transition: background .3s;
+        }
+        .arrow:hover { background: rgba(139,0,0,.85); }
+        .arrow.prev { left: 24px; }
+        .arrow.next { right: 24px; }
+        /* 底部小圆点 */
+        .dots {
+            position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; z-index: 10;
+        }
+        .dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,.5); cursor: pointer; transition: all .3s;
+            border: none; padding: 0;
+        }
+        .dot.active { background: #ffd700; width: 26px; border-radius: 5px; }
+
+        /* ===== 宣传栏 ===== */
+        .promo {
+            max-width: 900px; margin: 50px auto; padding: 40px 30px;
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 6px 28px rgba(0,0,0,.1);
+            text-align: center;
+        }
+        .promo h2 { color: #8b0000; font-size: 28px; margin-bottom: 8px; letter-spacing: 3px; }
+        .promo .sub { color: #888; margin-bottom: 30px; font-size: 14px; }
+        .promo video {
+            display: block; width: 100%; max-width: 720px;
+            margin: 0 auto; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(139,0,0,.15);
+        }
+        /* 音频隐藏不可见（不显示控件） */
+        .promo audio { display: none; }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; }
+
+        .event {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            align-items: center; margin-bottom: 60px;
+            background: #fff; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,.08);
+        }
+        .event img { width: 100%; height: 320px; object-fit: cover; }
+        .event .text { padding: 40px; }
+        .event .text h2 { color: #8b0000; font-size: 26px; margin-bottom: 12px; }
+        .event .text p { color: #555; line-height: 1.9; margin-bottom: 10px; }
+        .event .text .tips { font-size: 13px; color: #999; border-top: 1px dashed #ddd; padding-top: 12px; margin-top: 12px; }
+        .event:nth-child(even) img { order: 2; }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; } nav ul { gap: 14px; }
+            .slideshow { height: 300px; }
+            .slide h1 { font-size: 28px; letter-spacing: 4px; }
+            .arrow { width: 36px; height: 36px; font-size: 18px; }
+            .promo { margin: 30px 15px; padding: 24px 18px; }
+            .promo h2 { font-size: 22px; }
+            .event { grid-template-columns: 1fr; }
+            .event:nth-child(even) img { order: 0; }
+            .event .text { padding: 24px; }
+        }
+
+        footer { background: #2b1810; color: #ccc; text-align: center; padding: 25px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">🐼 蜀韵成都</div>
+    <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">景点</a></li>
+        <li><a href="about.html">美食</a></li>
+        <li><a href="login.html" class="active">文化</a></li>
+        <li><a href="user.html">攻略</a></li>
+    </ul>
+</nav>
+
+<!-- ===== 轮播图：图片完整显示不变形 ===== -->
+<div class="slideshow">
+    <div class="slide active">
+        <img src="imges/59cfc7f98196e09c514da7d33c29e6ca.jpeg" alt="文化体验">
+        <div class="caption"><h1>文 化 体 验</h1><p>巴蜀风情 · 古韵今风</p></div>
+    </div>
+    <div class="slide">
+        <img src="imges/88d87b9f2e612e500e7b2de762975408.jpg" alt="熊猫故乡">
+        <div class="caption"><h1>熊 猫 故 乡</h1><p>憨态国宝 · 可爱之都</p></div>
+    </div>
+    <div class="slide">
+        <img src="imges/a63ca82c69407a19a7b72d0b4c9ffa8f.jpg" alt="蜀绣千年">
+        <div class="caption"><h1>蜀 绣 千 年</h1><p>针脚如画 · 匠心传承</p></div>
+    </div>
+    <button class="arrow prev" aria-label="上一张">&#10094;</button>
+    <button class="arrow next" aria-label="下一张">&#10095;</button>
+    <div class="dots">
+        <button class="dot active" data-index="0"></button>
+        <button class="dot" data-index="1"></button>
+        <button class="dot" data-index="2"></button>
+    </div>
+</div>
+
+<!-- ===== 宣传栏：视频可见 + 音频隐藏 ===== -->
+<div class="promo">
+    <h2>🎬 成 都 风 光 宣 传 片</h2>
+    <p class="sub">跟随镜头，领略天府之国的山水人文之美 · 背景音乐同步播放</p>
+
+    <!-- 视频：用户唯一可见的播放控件 -->
+    <video id="mainVideo" controls preload="metadata" playsinline muted
+           poster="imges/59cfc7f98196e09c514da7d33c29e6ca.jpeg">
+        <source src="imges/cd1.mp4" type="video/mp4">
+        您的浏览器不支持 video 标签。
+    </video>
+
+    <!-- 音频：hidden 隐藏，JS 驱动同步播放 -->
+    <audio id="bgAudio" preload="metadata" loop hidden>
+        <source src="imges/蔡琴明月几时有.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<div class="container">
+
+    <div class="event">
+        <img src="./imges/a.jpg" alt="熊猫基地">
+        <div class="text">
+            <h2>🐼 大熊猫繁育研究基地</h2>
+            <p>憨态可掬的大熊猫是成都最闪亮的名片。在这里你可以近距离观察国宝的日常生活——吃竹子、打滚、爬树、卖萌。</p>
+            <p>建议上午早点前往，熊猫最活跃的时段是早晨。基地还能看到小熊猫和黑颈鹤。</p>
+            <div class="tips">📍 成华区熊猫大道1375号 | 🕐 07:30-18:00 | 💰 55元</div>
+        </div>
+    </div>
+
+    <div class="event">
+        <img src="./imges/b.jpg" alt="川剧变脸">
+        <div class="text">
+            <h2>🎭 川剧变脸</h2>
+            <p>川剧变脸是四川独有的传统表演艺术，演员在极短时间内变换十余张脸谱，令人叹为观止。</p>
+            <p>推荐到蜀风雅韵剧院或芙蓉国粹观看，整场演出还包含吐火、滚灯、手影戏等绝活。</p>
+            <div class="tips">📍 蜀风雅韵：琴台路文化公园内 | 🕐 每晚 19:30 开始 | 💰 150-280元</div>
+        </div>
+    </div>
+
+    <div class="event">
+        <img src="./imges/c.jpg" alt="茶馆">
+        <div class="text">
+            <h2>🍵 老茶馆品茗</h2>
+            <p>成都是泡在茶水里的城市。一把竹椅、一碗盖碗茶、一盘瓜子，就能消磨大半天。</p>
+            <p>人民公园的鹤鸣茶社是百年老字号，掏耳朵是必体验项目。也可以去宽窄巷子、锦里的茶馆坐一坐。</p>
+            <div class="tips">📍 人民公园鹤鸣茶社 | 🕐 全天 | 💰 茶位 15-30元</div>
+        </div>
+    </div>
+
+    <div class="event">
+        <img src="/imges/D.jpg" alt="蜀绣">
+        <div class="text">
+            <h2>🧵 蜀绣与漆器</h2>
+            <p>蜀绣是中国四大名绣之一，以针法严谨、片线光亮著称。成都也是中国漆器之都，金银平脱工艺巧夺天工。</p>
+            <p>可以到蜀绣博物馆参观，或在锦里、宽窄巷子选购精美工艺品作为伴手礼。</p>
+            <div class="tips">📍 蜀绣博物馆：金牛区迎宾大道 | 💰 免费</div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 蜀韵成都 | 发现天府之国的美好</p>
+</footer>
+
+<!-- ===== 轮播图脚本 ===== -->
+<script>
+(function () {
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    const prev   = document.querySelector('.arrow.prev');
+    const next   = document.querySelector('.arrow.next');
+    let current  = 0, timer = null;
+
+    function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+    function startAuto() { timer = setInterval(() => goTo(current + 1), 4000); }
+    function stopAuto()  { clearInterval(timer); }
+
+    prev.addEventListener('click', () => { goTo(current - 1); stopAuto(); startAuto(); });
+    next.addEventListener('click', () => { goTo(current + 1); stopAuto(); startAuto(); });
+    dots.forEach(d => d.addEventListener('click', () => {
+        goTo(parseInt(d.dataset.index)); stopAuto(); startAuto();
+    }));
+    startAuto();
+})();
+
+/* ===== 视频 驱动 音频：点视频 → 音频同步 ===== */
+(function () {
+    const video = document.getElementById('mainVideo');
+    const audio = document.getElementById('bgAudio');
+
+    // 视频播放 → 音频跟着播放
+    video.addEventListener('play', () => { audio.play().catch(()=>{}); });
+    // 视频暂停 → 音频跟着暂停
+    video.addEventListener('pause', () => { audio.pause(); });
+    // 视频播完 → 音频归零
+    video.addEventListener('ended', () => { audio.pause(); audio.currentTime = 0; });
+    // 视频拖动进度条 → 音频同步（循环取模）
+    video.addEventListener('seeking', () => {
+        if (audio.duration) audio.currentTime = video.currentTime % audio.duration;
+    });
+})();
+</script>
+
+</body>
+</html>

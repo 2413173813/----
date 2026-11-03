@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食推荐 · 蜀韵成都</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", sans-serif; background: #fdf8f3; color: #333; }
+        a { text-decoration: none; color: inherit; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(139, 0, 0, 0.95);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 60px; height: 64px;
+        }
+        nav .logo { color: #ffd700; font-size: 22px; font-weight: bold; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 36px; }
+        nav ul li a { color: #fff; font-size: 15px; transition: color .3s; }
+        nav ul li a:hover, nav ul li a.active { color: #ffd700; }
+
+        .banner {
+            height: 320px; margin-top: 64px;
+            background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.3)),
+                        url('https://images.unsplash.com/photo-1552611052-33e04de081de?w=1600') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+        }
+        .banner h1 { font-size: 42px; letter-spacing: 6px; }
+        .banner p { margin-top: 10px; opacity: .9; }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; }
+
+        .category-title {
+            font-size: 26px; color: #8b0000; margin: 40px 0 20px;
+            padding-left: 14px; border-left: 5px solid #ffd700;
+        }
+
+        .dishes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .dish {
+            background: #fff; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,.08); transition: transform .3s;
+        }
+        .dish:hover { transform: translateY(-5px); }
+        .dish img { width: 100%; height: 200px; object-fit: cover; }
+        .dish .content { padding: 18px 20px; }
+        .dish h3 { color: #8b0000; font-size: 18px; margin-bottom: 6px; }
+        .dish .level { font-size: 13px; color: #d2691e; margin-bottom: 10px; }
+        .dish p { font-size: 14px; color: #666; line-height: 1.6; }
+
+        footer { background: #2b1810; color: #ccc; text-align: center; padding: 25px; font-size: 14px; margin-top: 50px; }
+        @media (max-width: 768px) { nav { padding: 0 20px; } nav ul { gap: 14px; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">🐼 蜀韵成都</div>
+    <ul>
+         <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">景点</a></li>
+        <li><a href="about.html">美食</a></li>
+        <li><a href="login.html" class="active">文化</a></li>
+        <li><a href="user.html">攻略</a></li>
+    </ul>
+</nav>
+
+<section class="banner">
+    <div>
+        <h1>成 都 美 食</h1>
+        <p>麻辣鲜香 · 味蕾狂欢</p>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="category-title">🔥 招牌火锅</div>
+    <div class="dishes">
+        <div class="dish">
+            <img src="./imges/hg.jpg" alt="火锅">
+            <div class="content">
+                <h3>成都老火锅</h3>
+                <div class="level">辣度 🌶️🌶️🌶️🌶️🌶️</div>
+                <p>牛油锅底醇厚浓香，毛肚、黄喉、鸭肠七上八下，是成都人刻在骨子里的热爱。</p>
+            </div>
+        </div>
+        <div class="dish">
+            <img src="./imges/cc.webp" alt="串串">
+            <div class="content">
+                <h3>冷锅串串</h3>
+                <div class="level">辣度 🌶️🌶️🌶️</div>
+                <p>荤素菜品一串一签，浸在麻辣鲜香的红油汤里，夏天吃更是过瘾。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-title">🍜 经典川菜</div>
+    <div class="dishes">
+        <div class="dish">
+            <img src="./imges/mp.jpg" alt="麻婆豆腐">
+            <div class="content">
+                <h3>麻婆豆腐</h3>
+                <div class="level">辣度 🌶️🌶️🌶️</div>
+                <p>"麻、辣、烫、嫩、鲜、香"六字诀，一碗豆腐吃出川菜的灵魂。</p>
+            </div>
+        </div>
+        <div class="dish">
+            <img src="./imges/gd.jpg" alt="宫保鸡丁">
+            <div class="content">
+                <h3>宫保鸡丁</h3>
+                <div class="level">辣度 🌶️🌶️</div>
+                <p>鸡丁嫩滑、花生酥脆、酸甜微辣，川菜走出国门的代表之作。</p>
+            </div>
+        </div>
+        <div class="dish">
+            <img src="./imges/szy.webp" alt="水煮鱼">
+            <div class="content">
+                <h3>水煮鱼</h3>
+                <div class="level">辣度 🌶️🌶️🌶️🌶️</div>
+                <p>鱼片滑嫩，红油滚烫，辣椒花椒铺了满满一层，热油激香的瞬间绝了。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-title">🥟 地道小吃</div>
+    <div class="dishes">
+        <div class="dish">
+            <img src="./imges/cc.webp" alt="担担面">
+            <div class="content">
+                <h3>担担面</h3>
+                <div class="level">辣度 🌶️🌶️🌶️</div>
+                <p>细细的手工面条配上秘制调料，一拌就香，街头巷尾都能找到。</p>
+            </div>
+        </div>
+        <div class="dish">
+            <img src="./imges/sj.webp" alt="龙抄手">
+            <div class="content">
+                <h3>龙抄手 / 钟水饺</h3>
+                <div class="level">辣度 🌶️🌶️</div>
+                <p>皮薄馅大的馄饨蘸上辣椒油，红油一浇，酸辣开胃。</p>
+            </div>
+        </div>
+        <div class="dish">
+            <img src="./imges/ic.webp" alt="冰粉">
+            <div class="content">
+                <h3>手工冰粉</h3>
+                <div class="level">甜 🍧</div>
+                <p>冰凉爽滑的红糖水冰粉，配上糍粑、葡萄干、花生碎，解辣神器。</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 蜀韵成都 | 发现天府之国的美好</p>
+</footer>
+
+</body>
+</html>

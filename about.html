@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>景点推荐 · 蜀韵成都</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", sans-serif; background: #fdf8f3; color: #333; }
+        a { text-decoration: none; color: inherit; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(139, 0, 0, 0.95);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 60px; height: 64px;
+        }
+        nav .logo { color: #ffd700; font-size: 22px; font-weight: bold; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 36px; }
+        nav ul li a { color: #fff; font-size: 15px; transition: color .3s; }
+        nav ul li a:hover, nav ul li a.active { color: #ffd700; }
+
+        .banner {
+            height: 320px; margin-top: 64px;
+            background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.3)),
+                        url('https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=1600') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+        }
+        .banner h1 { font-size: 42px; letter-spacing: 6px; }
+        .banner p { margin-top: 10px; opacity: .9; }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; }
+
+        .spot {
+            display: flex; gap: 30px; background: #fff; border-radius: 12px;
+            overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08);
+            margin-bottom: 30px; transition: transform .3s;
+        }
+        .spot:hover { transform: translateY(-4px); }
+        .spot img { width: 40%; min-height: 240px; object-fit: cover; }
+        .spot .desc { flex: 1; padding: 28px; }
+        .spot .desc h2 { color: #8b0000; font-size: 24px; margin-bottom: 10px; }
+        .spot .desc .tag {
+            display: inline-block; background: #ffd700; color: #8b0000;
+            font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 10px;
+        }
+        .spot .desc p { color: #555; line-height: 1.8; font-size: 15px; margin-bottom: 10px; }
+        .spot .desc .info { font-size: 13px; color: #999; }
+        .spot .desc .info span { margin-right: 16px; }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            nav ul { gap: 14px; }
+            .spot { flex-direction: column; }
+            .spot img { width: 100%; height: 200px; }
+        }
+
+        footer { background: #2b1810; color: #ccc; text-align: center; padding: 25px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">🐼 蜀韵成都</div>
+    <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">景点</a></li>
+        <li><a href="contact.html">美食</a></li>
+        <li><a href="login.html" class="active">文化</a></li>
+        <li><a href="user.html">攻略</a></li>
+    </ul>
+</nav>
+
+<section class="banner">
+    <div>
+        <h1>成 都 景 点</h1>
+        <p>千年古都 · 名胜荟萃</p>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="spot">
+        <img src="./imges/k.jpg" alt="宽窄巷子">
+        <div class="desc">
+            <h2>🏮 宽窄巷子</h2>
+            <span class="tag">历史文化</span>
+            <p>由宽巷子、窄巷子和井巷子三条平行排列的老式街道组成，是成都最具代表性的历史文化街区。青石板、川西民居、茶馆、小吃……处处都是老成都的味道。</p>
+            <div class="info">
+                <span>📍 青羊区长顺街</span>
+                <span>🕐 全天开放</span>
+                <span>💰 免费</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="spot">
+        <img src="./imges/j.jpg" alt="锦里">
+        <div class="desc">
+            <h2>🎭 锦里古街</h2>
+            <span class="tag">三国文化</span>
+            <p>传说中蜀汉丞相诸葛亮的"锦官城"所在地，如今是成都最热闹的仿古商业街。红灯笼、川剧脸谱、三大炮、糖油粑粑，夜晚灯火璀璨尤值得一逛。</p>
+            <div class="info">
+                <span>📍 武侯区武侯祠大街</span>
+                <span>🕐 全天开放</span>
+                <span>💰 免费</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="spot">
+        <img src="./imges/w.jpg" alt="武侯祠">
+        <div class="desc">
+            <h2>🏛️ 武侯祠博物馆</h2>
+            <span class="tag">三国圣地</span>
+            <p>中国唯一一座君臣合祀祠庙，纪念刘备与诸葛亮。红墙竹影、碑刻楹联，漫步其中仿佛穿越回烽火连天的三国时代。</p>
+            <div class="info">
+                <span>📍 武侯区武侯祠大街231号</span>
+                <span>🕐 08:30-18:30</span>
+                <span>💰 50元</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="spot">
+        <img src="./imges/df.jpg" alt="杜甫草堂">
+        <div class="desc">
+            <h2>📜 杜甫草堂</h2>
+            <span class="tag">诗歌圣地</span>
+            <p>唐代诗人杜甫流寓成都时的故居，"安得广厦千万间"便诞生于此。园内花木扶疏，茅屋重现，是中国文学史上的一块圣地。</p>
+            <div class="info">
+                <span>📍 青羊区青华路37号</span>
+                <span>🕐 09:00-17:30</span>
+                <span>💰 50元</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="spot">
+        <img src="./imges/cx.jpeg" alt="春熙路">
+        <div class="desc">
+            <h2>🛍️ 春熙路商圈</h2>
+            <span class="tag">时尚购物</span>
+            <p>成都最繁华的商业街，百年老字号与国际大牌齐聚。IFS楼顶的爬墙大熊猫是网红打卡点，旁边的太古里则是慢节奏的文艺街区。</p>
+            <div class="info">
+                <span>📍 锦江区春熙路</span>
+                <span>🕐 10:00-22:00</span>
+                <span>💰 免费</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 蜀韵成都 | 发现天府之国的美好</p>
+</footer>
+
+</body>
+</html>

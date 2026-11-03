@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程攻略 · 蜀韵成都</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", sans-serif; background: #fdf8f3; color: #333; }
+        a { text-decoration: none; color: inherit; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(139, 0, 0, 0.95);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 60px; height: 64px;
+        }
+        nav .logo { color: #ffd700; font-size: 22px; font-weight: bold; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 36px; }
+        nav ul li a { color: #fff; font-size: 15px; transition: color .3s; }
+        nav ul li a:hover, nav ul li a.active { color: #ffd700; }
+
+        .banner {
+            height: 320px; margin-top: 64px;
+            background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.3)),
+                        url('https://images.unsplash.com/photo-1552611052-33e04de081de?w=1600') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+        }
+        .banner h1 { font-size: 42px; letter-spacing: 6px; }
+        .banner p { margin-top: 10px; opacity: .9; }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; }
+
+        .section-title {
+            font-size: 26px; color: #8b0000; margin: 40px 0 20px;
+            padding-left: 14px; border-left: 5px solid #ffd700;
+        }
+
+        /* 行程时间线 */
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before {
+            content: ""; position: absolute; left: 8px; top: 0; bottom: 0;
+            width: 3px; background: linear-gradient(#8b0000, #ffd700);
+        }
+        .day { position: relative; background: #fff; border-radius: 10px; padding: 20px 24px;
+               margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+        .day::before {
+            content: ""; position: absolute; left: -28px; top: 24px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: #8b0000; border: 3px solid #ffd700;
+        }
+        .day h3 { color: #8b0000; font-size: 18px; margin-bottom: 10px; }
+        .day ul { padding-left: 20px; color: #555; line-height: 1.9; font-size: 15px; }
+
+        /* 双列信息卡 */
+        .infos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .info-card {
+            background: #fff; padding: 24px; border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0,0,0,.06);
+        }
+        .info-card h3 { color: #8b0000; font-size: 18px; margin-bottom: 12px; }
+        .info-card p, .info-card li { font-size: 14px; color: #555; line-height: 1.8; }
+        .info-card ul { padding-left: 18px; }
+
+        footer { background: #2b1810; color: #ccc; text-align: center; padding: 25px; font-size: 14px; margin-top: 50px; }
+        @media (max-width: 768px) { nav { padding: 0 20px; } nav ul { gap: 14px; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">🐼 蜀韵成都</div>
+    <ul>
+         <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">景点</a></li>
+        <li><a href="about.html">美食</a></li>
+        <li><a href="login.html" class="active">文化</a></li>
+        <li><a href="user.html">攻略</a></li>
+    </ul>
+</nav>
+
+<section class="banner">
+    <div>
+        <h1>行 程 攻 略</h1>
+        <p>轻松规划 · 畅游天府</p>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="section-title">📅 推荐 4 日游行程</div>
+
+    <div class="timeline">
+        <div class="day">
+            <h3>Day 1 · 初见成都 · 老城漫步</h3>
+            <ul>
+                <li>上午：宽窄巷子（感受老成都民居）</li>
+                <li>中午：巷子内品尝钟水饺、龙抄手</li>
+                <li>下午：人民公园鹤鸣茶社喝茶掏耳朵</li>
+                <li>晚上：奎星楼街吃火锅 / 串串</li>
+            </ul>
+        </div>
+
+        <div class="day">
+            <h3>Day 2 · 三国文化 · 诗圣故居</h3>
+            <ul>
+                <li>上午：武侯祠博物馆（三国圣地）</li>
+                <li>下午：锦里古街（三国主题街区）+ 杜甫草堂</li>
+                <li>晚上：锦里看夜景、吃小吃</li>
+            </ul>
+        </div>
+
+        <div class="day">
+            <h3>Day 3 · 熊猫基地 · 川剧变脸</h3>
+            <ul>
+                <li>上午：大熊猫繁育研究基地（务必早到）</li>
+                <li>下午：春熙路 + IFS 爬墙熊猫打卡 + 太古里逛街</li>
+                <li>晚上：蜀风雅韵看川剧变脸表演</li>
+            </ul>
+        </div>
+
+        <div class="day">
+            <h3>Day 4 · 周边一日游</h3>
+            <ul>
+                <li>选项 A：都江堰 + 青城山（世界遗产）</li>
+                <li>选项 B：洛带古镇 + 金龙长城</li>
+                <li>选项 C：安仁古镇 + 建川博物馆</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-title">🚄 交通 & 住宿 & Tips</div>
+
+    <div class="infos">
+        <div class="info-card">
+            <h3>✈️ 到达成都</h3>
+            <ul>
+                <li>双流机场：距市区约 16km，有地铁 10 号线</li>
+                <li>天府机场：距市区较远，有地铁 18 号线</li>
+                <li>高铁：成都站 / 成都东站，均有地铁接驳</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>🚇 市内交通</h3>
+            <ul>
+                <li>地铁：已开通 13 条线路，覆盖主要景点</li>
+                <li>公交：2 元一票制，支持天府通 APP</li>
+                <li>打车 / 共享单车：方便灵活</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>🏨 住宿推荐</h3>
+            <ul>
+                <li>春熙路 / 太古里：市中心，交通便利</li>
+                <li>宽窄巷子 / 青羊区：老城氛围浓厚</li>
+                <li>锦江区合江亭：夜景好，性价比高</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3>💡 实用 Tips</h3>
+            <ul>
+                <li>3-6 月、9-11 月是最佳旅游季节</li>
+                <li>夏天多雨，记得带伞</li>
+                <li>吃火锅建议配酸奶或冰粉解辣</li>
+                <li>熊猫基地务必上午去，下午熊猫要睡觉</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 蜀韵成都 | 发现天府之国的美好</p>
+</footer>
+
+</body>
+</html>
